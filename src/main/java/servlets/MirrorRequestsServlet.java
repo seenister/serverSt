@@ -11,7 +11,7 @@ public class MirrorRequestsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
 
-        response.getWriter().println(request.getParameter("key").toString());
+        response.getWriter().println(request.getParameter("key"));
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
