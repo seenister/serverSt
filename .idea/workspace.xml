@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e3ada6e-121c-4bb6-82f9-0880db383767" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public_html/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/accounts/AccountService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/accounts/UserProfile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/SignInServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/SignUpServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assembly.bat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assembly.sh" beforeDir="false" />
@@ -19,11 +12,13 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlets/AllRequestsServlet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MirrorRequestsServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/templater/PageGenerator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/start.bat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/start.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/servlets/AllRequestsServlet.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/servlets/MirrorRequestsServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/servlets/SignInServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/SignInServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templater/PageGenerator.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/page.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +36,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="20sBkdDIoHGcJYViwuPm95DG9MG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -51,10 +54,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="advanced.settings" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -110,6 +113,9 @@
       <workItem from="1637674353787" duration="4410000" />
       <workItem from="1637862103615" duration="4208000" />
       <workItem from="1637942042916" duration="8679000" />
+      <workItem from="1638040280834" duration="503000" />
+      <workItem from="1638211637749" duration="1606000" />
+      <workItem from="1638382290036" duration="785000" />
     </task>
     <servers />
   </component>

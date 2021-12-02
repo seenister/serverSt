@@ -12,6 +12,7 @@ import servlets.SignUpServlet;
 
 
 public class Main {
+
     public static void main(String[] args) throws Exception {
         AccountService accountService = new AccountService();
 
