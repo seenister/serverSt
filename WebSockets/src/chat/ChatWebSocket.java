@@ -6,6 +6,9 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author v.chibrikov
  *         <p/>
@@ -18,6 +21,7 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 public class ChatWebSocket {
     private ChatService chatService;
     private Session session;
+    static Set<String> banList = new HashSet<>();
 
     public ChatWebSocket(ChatService chatService) {
         this.chatService = chatService;
@@ -40,10 +44,21 @@ public class ChatWebSocket {
     }
 
     public void sendString(String data) {
+        String[] subStr = data.split(":", 2);
+        String metBan = "/ban ";
+
         try {
-            session.getRemote().sendString(data);
+            if (banList.contains(subStr[0])) {
+                session.getRemote().sendString("you are banned!");
+            } else {
+                session.getRemote().sendString(data);
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+        if (subStr[1].startsWith(metBan)) {
+            banList.add(subStr[1].substring(metBan.length()));
         }
     }
 }
