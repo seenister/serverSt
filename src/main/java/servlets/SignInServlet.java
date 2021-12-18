@@ -1,8 +1,9 @@
+
 package servlets;
 
-import accounts.AccountService;
-import accounts.UserProfile;
+import accounts.UserHuuzer;
 import com.google.gson.Gson;
+import services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SignInServlet extends HttpServlet {
-    private final AccountService accountService;
+    private final UserService userService;
 
-    public SignInServlet(AccountService accountService) {
-        this.accountService = accountService;
+    public SignInServlet(UserService userService) {
+        this.userService = userService;
     }
 
     //sign in
@@ -29,7 +30,7 @@ public class SignInServlet extends HttpServlet {
             return;
         }
 
-        UserProfile profile = accountService.getUserByLogin(login);
+        UserHuuzer profile = userService.findByLogin(login);
         if (profile == null || !profile.getPass().equals(pass)) {
             response.setContentType("text/html;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -45,3 +46,4 @@ public class SignInServlet extends HttpServlet {
     }
 
 }
+

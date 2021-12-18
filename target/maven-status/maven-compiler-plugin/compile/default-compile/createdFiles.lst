@@ -1,3 +1,5 @@
+accounts\UserHuuzer.class
 main\Main.class
-servlets\AllRequestsServlet.class
-templater\PageGenerator.class
+services\UserService.class
+utils\HibernateSessionFactoryUtil.class
+dao\UsersDAO.class

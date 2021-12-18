@@ -1,3 +1,7 @@
-C:\Users\Tomato\Desktop\test1\stepic_java_webserver\L1.1 Simple web server\src\main\java\templater\PageGenerator.java
-C:\Users\Tomato\Desktop\test1\stepic_java_webserver\L1.1 Simple web server\src\main\java\main\Main.java
-C:\Users\Tomato\Desktop\test1\stepic_java_webserver\L1.1 Simple web server\src\main\java\servlets\AllRequestsServlet.java
+E:\Проекты\Git проекты\serverSt\src\main\java\dao\UsersDAO.java
+E:\Проекты\Git проекты\serverSt\src\main\java\servlets\SignInServlet.java
+E:\Проекты\Git проекты\serverSt\src\main\java\services\UserService.java
+E:\Проекты\Git проекты\serverSt\src\main\java\main\Main.java
+E:\Проекты\Git проекты\serverSt\src\main\java\accounts\UserHuuzer.java
+E:\Проекты\Git проекты\serverSt\src\main\java\servlets\SignUpServlet.java
+E:\Проекты\Git проекты\serverSt\src\main\java\utils\HibernateSessionFactoryUtil.java

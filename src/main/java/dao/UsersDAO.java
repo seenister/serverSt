@@ -1,27 +1,47 @@
-package dbService.dao;
+package dao;
 
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
+import accounts.UserHuuzer;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import utils.HibernateSessionFactoryUtil;
 
 public class UsersDAO {
 
-    private Session session;
-    public UsersDAO(Session session) {
-        this.session = session;
+    SessionFactory sessionFactory = HibernateSessionFactoryUtil.getSessionFactory();
+
+    public UserHuuzer findById(int id) {
+        return sessionFactory.openSession().get(UserHuuzer.class, id);
     }
 
-    public UsersDataSet get(long id) throws HibernateException {
-        return (UsersDataSet) session.get(UsersDataSet.class, id);
+    public void save(UserHuuzer user) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx1 = session.beginTransaction();
+            session.save(user);
+            tx1.commit();
+        }
     }
 
-    public long getUserId(String name) throws HibernateException {
-        Criteria criteria = session.createCriteria(UsersDataSet.class);
-        return ((UsersDataSet) criteria.add(Restrictions.eq("name", name)).uniqueResult()).getId();
+    public void update(UserHuuzer user) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx1 = session.beginTransaction();
+            session.update(user);
+            tx1.commit();
+        }
     }
 
-    public long insertUser(String name) throws HibernateException {
-        return (Long) session.save(new UsersDataSet(name));
+    public void delete(UserHuuzer user) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx1 = session.beginTransaction();
+            session.delete(user);
+            tx1.commit();
+        }
+    }
+
+    public UserHuuzer findByLogin(String login) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(UserHuuzer.class, login);
+        }
     }
 }
+

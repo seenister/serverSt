@@ -1,8 +1,9 @@
+
 package servlets;
 
-import accounts.AccountService;
-import accounts.UserProfile;
+import accounts.UserHuuzer;
 import com.google.gson.Gson;
+import services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SignUpServlet extends HttpServlet {
-    private final AccountService accountService;
+    private final UserService userService;
 
-    public SignUpServlet(AccountService accountService) {
-        this.accountService = accountService;
+    public SignUpServlet(UserService userService) {
+        this.userService = userService;
     }
 
     //sign up
@@ -29,14 +30,15 @@ public class SignUpServlet extends HttpServlet {
             return;
         }
 
-        if (accountService.getUserByLogin(login) != null) {
+        if (userService.findByLogin(login) != null) {
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println("Пользователь уже существует");
             return;
+
         }
 
-        UserProfile newUser = new UserProfile(login, pass);
-        accountService.addNewUser(newUser);
+        UserHuuzer newUser = new UserHuuzer(login, pass);
+        userService.saveUser(newUser);
 
 
         Gson gson = new Gson();
@@ -48,3 +50,4 @@ public class SignUpServlet extends HttpServlet {
     }
 
 }
+
