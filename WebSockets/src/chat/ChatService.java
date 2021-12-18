@@ -5,13 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * @author v.chibrikov
- * <p>
- * Пример кода для курса на https://stepic.org/
- * <p>
- * Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
- */
 public class ChatService {
     private Set<ChatWebSocket> webSockets;
     Set<String> banList = new HashSet<>();
@@ -27,7 +20,7 @@ public class ChatService {
         for (ChatWebSocket user : webSockets) {
             try {
                 if (banList.contains(subStr[0])) {
-                    System.out.println("you are banned!");
+                    System.out.println("you are banned!"+ banList + "-" + subStr[0]);
                 }else {  user.sendString(data);}
             } catch (Exception e) {
                 System.out.println(e.getMessage());
