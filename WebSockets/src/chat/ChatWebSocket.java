@@ -11,10 +11,10 @@ import java.util.Set;
 
 /**
  * @author v.chibrikov
- *         <p/>
- *         Пример кода для курса на https://stepic.org/
- *         <p/>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
+ * <p/>
+ * Пример кода для курса на https://stepic.org/
+ * <p/>
+ * Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
 @SuppressWarnings("UnusedDeclaration")
 @WebSocket
@@ -46,6 +46,7 @@ public class ChatWebSocket {
     public void sendString(String data) {
         String[] subStr = data.split(":", 2);
         String metBan = "/ban ";
+        String unBan = "/unban ";
 
         try {
             if (banList.contains(subStr[0])) {
@@ -60,5 +61,22 @@ public class ChatWebSocket {
         if (subStr[1].startsWith(metBan)) {
             banList.add(subStr[1].substring(metBan.length()));
         }
+
+
+        if (subStr[1].startsWith(unBan)) {
+            subStr[1] = subStr[1].substring(unBan.length());
+            System.out.println(subStr[1]);
+            if (banList.contains(subStr[1])) {
+                banList.remove(subStr[1]);
+            } else {
+                try {
+                    session.getRemote().sendString("User not found in banned list");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+
+                }
+                banList.add(subStr[1].substring(metBan.length()));
+            }
+        }
     }
-}
+    }
