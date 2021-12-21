@@ -6,6 +6,8 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,9 +35,66 @@ public class ChatWebSocket {
         this.session = session;
     }
 
+    public String[] parseData(String data) {
+        String[] subStr = data.split(":", 2);
+        String sender = subStr[0];
+
+        String[] subSubStr = subStr[1].split(" ", 2);
+        String command = subSubStr[0];
+        String commandParam = subSubStr[1];
+
+        String[] arrayData = {sender, command, commandParam};
+        return arrayData;
+    }
+
+    public boolean chooseCommand(String data) {
+
+        if (parseData(data)[1].startsWith("/")) {
+            switch (parseData(data)[1]) {
+                case "/ban":
+                    ban(data);
+                case "/unban":
+                    unban(data);
+                case "/clear":
+
+
+                default:
+                    try {
+                        session.getRemote().sendString("Wrong command");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public void ban(String data) {
+        banList.add(parseData(data)[2]);
+    }
+
+    public void unban(String data) {
+        banList.remove(parseData(data)[2]);
+    }
+
+    public void clear(String data) {
+
+    }
+
     @OnWebSocketMessage
     public void onMessage(String data) {
-        chatService.sendMessage(data);
+        try {
+            if (banList.contains(parseData(data)[1])) {
+                session.getRemote().sendString("you are banned!");
+            } else {
+                if (!chooseCommand(data)) {
+                    chatService.sendMessage(data);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @OnWebSocketClose
@@ -44,39 +103,11 @@ public class ChatWebSocket {
     }
 
     public void sendString(String data) {
-        String[] subStr = data.split(":", 2);
-        String metBan = "/ban ";
-        String unBan = "/unban ";
-
         try {
-            if (banList.contains(subStr[0])) {
-                session.getRemote().sendString("you are banned!");
-            } else {
-                session.getRemote().sendString(data);
-            }
+            session.getRemote().sendString(data);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        if (subStr[1].startsWith(metBan)) {
-            banList.add(subStr[1].substring(metBan.length()));
-        }
-
-
-        if (subStr[1].startsWith(unBan)) {
-            subStr[1] = subStr[1].substring(unBan.length());
-            System.out.println(subStr[1]);
-            if (banList.contains(subStr[1])) {
-                banList.remove(subStr[1]);
-            } else {
-                try {
-                    session.getRemote().sendString("User not found in banned list");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-
-                }
-                banList.add(subStr[1].substring(metBan.length()));
-            }
-        }
     }
-    }
+}
