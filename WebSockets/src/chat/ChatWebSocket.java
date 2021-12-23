@@ -24,6 +24,7 @@ public class ChatWebSocket {
     private ChatService chatService;
     private Session session;
     static Set<String> banList = new HashSet<>();
+    ParseData parseData1;
 
     public ChatWebSocket(ChatService chatService) {
         this.chatService = chatService;
@@ -48,9 +49,8 @@ public class ChatWebSocket {
     }
 
     public boolean chooseCommand(String data) {
-
-        if (parseData(data)[1].startsWith("/")) {
-            switch (parseData(data)[1]) {
+        if (parseData1.getCommand().startsWith("/")) {
+            switch (parseData1.getCommand()) {
                 case "/ban":
                     ban(data);
                 case "/unban":
@@ -71,11 +71,12 @@ public class ChatWebSocket {
     }
 
     public void ban(String data) {
-        banList.add(parseData(data)[2]);
+        banList.add(parseData1.getData());
     }
 
     public void unban(String data) {
-        banList.remove(parseData(data)[2]);
+
+        banList.remove(parseData1.getData());
     }
 
     public void clear(String data) {
@@ -85,7 +86,7 @@ public class ChatWebSocket {
     @OnWebSocketMessage
     public void onMessage(String data) {
         try {
-            if (banList.contains(parseData(data)[1])) {
+            if (banList.contains(parseData1.getData())) {
                 session.getRemote().sendString("you are banned!");
             } else {
                 if (!chooseCommand(data)) {
