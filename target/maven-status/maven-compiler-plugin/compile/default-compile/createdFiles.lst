@@ -1,5 +1,0 @@
-accounts\UserHuuzer.class
-main\Main.class
-services\UserService.class
-utils\HibernateSessionFactoryUtil.class
-dao\UsersDAO.class
